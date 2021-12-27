@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Files {% endblock %}
+
+{% block body %}
+    <table>
+        <thead>
+        <tr>
+            <th>
+                Sr. #
+            </th>
+            <th>
+                File Name
+            </th>
+            <th>
+                Created Date
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for key, file in files %}
+        <tr>
+            <td>{{  key + 1 }}</td>
+            <td>{{ file.getName() }}</td>
+            <td>{{ file.getCreatedAt() | date('Y-m-d') }}</td>
+            <td>
+                <a href="{{ path('files.detail', {'id': file.getId()}) }}">See Detail</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    <a href="{{ path('home') }}">Back</a>
+    <a href="{{ path('files') }}">Check Files Detail</a>
+{% endblock %}

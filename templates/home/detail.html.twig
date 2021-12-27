@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Files {% endblock %}
+
+{% block body %}
+    <h3>Invoice Uploaded</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>
+                Invoice Id
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Due Date
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for key, uploaded in uploaded_invoices %}
+            <tr>
+                <td>{{ uploaded.getInvoiceId() }}</td>
+                <td>{{ uploaded.getAmount() }}</td>
+                <td>{{ uploaded.getDueAt() | date('Y-m-d') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    <h3>Error Rows</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>
+                Row No
+            </th>
+            <th>
+                Actual Row
+            </th>
+            <th>
+                Error Detail
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for key, error in error_rows %}
+            <tr>
+                <td>{{ error.getErrorRowId() }}</td>
+                <td>{{ error.getErrorRowString() }}</td>
+                <td>{{ error.getErrorDetail() }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    <a href="{{ path('files') }}">Back</a>
+{% endblock %}

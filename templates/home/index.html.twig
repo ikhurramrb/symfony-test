@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Upload file{% endblock %}
+
+{% block body %}
+
+    <form action="{{ path('do-upload') }}" method="post" enctype="multipart/form-data">
+
+        <input type="hidden" name="token" value="{{ csrf_token('upload') }}" />
+
+        <div>
+            <label for="myFile">File to upload:</label>
+            <input type="file" name="myFile" id="myFile" accept=".xlsx, .xls, .csv" required>
+        </div>
+
+        <button type="submit">Upload</button>
+
+    </form>
+    <hr>
+    <a href="{{ path('files') }}">Check Files Detail</a>
+{% endblock %}
